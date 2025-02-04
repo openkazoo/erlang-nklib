@@ -1,17 +1,9 @@
 APP = nklib
 REBAR = rebar3
 
-.PHONY: rel stagedevrel package version all tree shell
+.PHONY: rel stagedevrel package all tree shell
 
-all: version compile
-
-
-version:
-	@echo "$(shell git symbolic-ref HEAD 2> /dev/null | cut -b 12-)-$(shell git log --pretty=format:'%h, %ad' -1)" > $(APP).version
-
-
-version_header: version
-	@echo "-define(VERSION, <<\"$(shell cat $(APP).version)\">>)." > include/$(APP)_version.hrl
+all: compile
 
 
 clean:
